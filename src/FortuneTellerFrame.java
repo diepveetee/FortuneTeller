@@ -54,16 +54,33 @@ public class FortuneTellerFrame extends JFrame {
     }
 
     /**
+     * Loads and scales an image from the given path.
+     *
+     * @param path  the file path of the image
+     * @param width desired width
+     * @param height desired height
+     * @return a scaled ImageIcon
+     */
+    private ImageIcon loadAndScaleImage(String path, int width, int height) {
+        ImageIcon originalIcon = new ImageIcon(path);
+        Image scaledImage = originalIcon.getImage()
+                .getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        return new ImageIcon(scaledImage);
+    }
+
+    /**
      * Creates the top panel containing the title and image.
      *
      * @return JPanel containing the formatted title label with icon
      */
 
+
     private JPanel createTopPanel() {
         JPanel panel = new JPanel();
 
-        ImageIcon icon = new ImageIcon("resources/fortune.png");
-        JLabel label = new JLabel("Fortune Teller", icon, JLabel.CENTER);
+        ImageIcon scaledIcon = loadAndScaleImage("resources/fortune.jpg", 200, 200);
+
+        JLabel label = new JLabel("Fortune Teller", scaledIcon, JLabel.CENTER);
 
         label.setHorizontalTextPosition(JLabel.CENTER);
         label.setVerticalTextPosition(JLabel.BOTTOM);
@@ -145,12 +162,6 @@ public class FortuneTellerFrame extends JFrame {
         fortunes.add("Outlook good.");
         fortunes.add("Yes.");
         fortunes.add("Signs point to yes");
-        fortunes.add("Never gonna give you up\n" +
-                "Never gonna let you down\n" +
-                "Never gonna run around and desert you\n" +
-                "Never gonna make you cry\n" +
-                "Never gonna say goodbye\n" +
-                "Never gonna tell a lie and hurt you");
     }
 
     /**
