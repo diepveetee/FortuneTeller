@@ -61,6 +61,7 @@ public class FortuneTellerFrame extends JFrame {
      * @param height desired height
      * @return a scaled ImageIcon
      */
+
     private ImageIcon loadAndScaleImage(String path, int width, int height) {
         ImageIcon originalIcon = new ImageIcon(path);
         Image scaledImage = originalIcon.getImage()
